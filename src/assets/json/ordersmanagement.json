@@ -1,0 +1,171 @@
+{
+    "ordersManagement": {
+        "statusBadges": [
+            "Placed",
+            "Accepted",
+            "Assigned",
+            "Picked",
+            "Delivered"
+        ],
+
+        "liveOrders": [{
+                "orderId": "ORD001",
+                "status": "Placed",
+                "orderTime": "2024-12-20 11:30",
+                "customerDetails": {
+                    "name": "Aman Verma",
+                    "phone": "9876543210",
+                    "address": "MG Road, Andheri East, Mumbai"
+                },
+                "restaurantDetails": {
+                    "restaurantId": "RES001",
+                    "name": "Spice Garden",
+                    "phone": "9122334455",
+                    "address": "Andheri East, Mumbai"
+                },
+                "deliveryPartner": null,
+                "orderItems": [
+                    { "itemName": "Paneer Butter Masala", "quantity": 1, "price": 280 },
+                    { "itemName": "Butter Naan", "quantity": 3, "price": 45 }
+                ],
+                "paymentMethod": "Online (UPI)",
+                "totalAmount": 415,
+                "actions": {
+                    "canAssignDeliveryPartner": true,
+                    "canCancelOrder": true,
+                    "canMarkDelivered": false
+                }
+            },
+
+            {
+                "orderId": "ORD002",
+                "status": "Accepted",
+                "orderTime": "2024-12-20 11:45",
+                "customerDetails": {
+                    "name": "Neha Singh",
+                    "phone": "9123456789",
+                    "address": "Sector 15, Noida"
+                },
+                "restaurantDetails": {
+                    "restaurantId": "RES005",
+                    "name": "Cafe Delight",
+                    "phone": "9000090000",
+                    "address": "Sector 18, Noida"
+                },
+                "deliveryPartner": null,
+                "orderItems": [
+                    { "itemName": "Veg Burger", "quantity": 2, "price": 120 },
+                    { "itemName": "Cold Coffee", "quantity": 1, "price": 90 }
+                ],
+                "paymentMethod": "Cash on Delivery",
+                "totalAmount": 330,
+                "actions": {
+                    "canAssignDeliveryPartner": true,
+                    "canCancelOrder": true,
+                    "canMarkDelivered": false
+                }
+            },
+
+            {
+                "orderId": "ORD003",
+                "status": "Assigned",
+                "orderTime": "2024-12-20 12:05",
+                "customerDetails": {
+                    "name": "Rohit Kumar",
+                    "phone": "9988776655",
+                    "address": "Kankarbagh, Patna"
+                },
+                "restaurantDetails": {
+                    "restaurantId": "RES004",
+                    "name": "Royal Biryani",
+                    "phone": "9111222333",
+                    "address": "Banjara Hills, Hyderabad"
+                },
+                "deliveryPartner": {
+                    "partnerId": "DP001",
+                    "name": "Ravi Kumar",
+                    "phone": "9876543210",
+                    "vehicleType": "Bike"
+                },
+                "orderItems": [
+                    { "itemName": "Chicken Biryani", "quantity": 1, "price": 350 },
+                    { "itemName": "Raita", "quantity": 1, "price": 40 }
+                ],
+                "paymentMethod": "Online (Card)",
+                "totalAmount": 390,
+                "actions": {
+                    "canAssignDeliveryPartner": false,
+                    "canCancelOrder": true,
+                    "canMarkDelivered": false
+                }
+            },
+
+            {
+                "orderId": "ORD004",
+                "status": "Picked",
+                "orderTime": "2024-12-20 12:25",
+                "customerDetails": {
+                    "name": "Pooja Mehta",
+                    "phone": "9090909090",
+                    "address": "Salt Lake, Kolkata"
+                },
+                "restaurantDetails": {
+                    "restaurantId": "RES005",
+                    "name": "Cafe Delight",
+                    "phone": "9000090000",
+                    "address": "Salt Lake, Kolkata"
+                },
+                "deliveryPartner": {
+                    "partnerId": "DP003",
+                    "name": "Sunil Verma",
+                    "phone": "9988776655",
+                    "vehicleType": "Walk"
+                },
+                "orderItems": [
+                    { "itemName": "Pasta Alfredo", "quantity": 1, "price": 260 }
+                ],
+                "paymentMethod": "Online (UPI)",
+                "totalAmount": 260,
+                "actions": {
+                    "canAssignDeliveryPartner": false,
+                    "canCancelOrder": false,
+                    "canMarkDelivered": true
+                }
+            },
+
+            {
+                "orderId": "ORD005",
+                "status": "Delivered",
+                "orderTime": "2024-12-20 12:40",
+                "customerDetails": {
+                    "name": "Arjun Malik",
+                    "phone": "9898989898",
+                    "address": "Sector 29, Gurgaon"
+                },
+                "restaurantDetails": {
+                    "restaurantId": "RES012",
+                    "name": "Grill House",
+                    "phone": "9888997766",
+                    "address": "Sector 29, Gurgaon"
+                },
+                "deliveryPartner": {
+                    "partnerId": "DP005",
+                    "name": "Ankit Patel",
+                    "phone": "9555566666",
+                    "vehicleType": "Bike"
+                },
+                "orderItems": [
+                    { "itemName": "Grilled Chicken", "quantity": 1, "price": 420 },
+                    { "itemName": "Fresh Lime Soda", "quantity": 1, "price": 60 }
+                ],
+                "paymentMethod": "Online (UPI)",
+                "totalAmount": 480,
+                "actions": {
+                    "canAssignDeliveryPartner": false,
+                    "canCancelOrder": false,
+                    "canMarkDelivered": false
+                }
+            }
+        ]
+    }
+}

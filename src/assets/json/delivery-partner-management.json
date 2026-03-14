@@ -1,0 +1,233 @@
+{
+    "deliveryPartnerManagement": {
+        "deliveryPartnerList": [{
+                "partnerId": "DP001",
+                "registrationData": {
+                    "name": "Ravi Kumar",
+                    "mobileNumber": "9876543210",
+                    "email": "ravi@gmail.com",
+                    "cityArea": "Andheri East, Mumbai",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1607746882042-944635dfe10e"
+                },
+                "listView": {
+                    "name": "Ravi Kumar",
+                    "phone": "9876543210",
+                    "city": "Mumbai",
+                    "status": "Active",
+                    "assignedOrdersCount": 12
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP002",
+                "registrationData": {
+                    "name": "Amit Singh",
+                    "mobileNumber": "9123456789",
+                    "email": "",
+                    "cityArea": "Indirapuram, Ghaziabad",
+                    "vehicleType": "Cycle",
+                    "image": "https://images.unsplash.com/photo-1599566150163-29194dcaad36"
+                },
+                "listView": {
+                    "name": "Amit Singh",
+                    "phone": "9123456789",
+                    "city": "Ghaziabad",
+                    "status": "Inactive",
+                    "assignedOrdersCount": 0
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP003",
+                "registrationData": {
+                    "name": "Sunil Verma",
+                    "mobileNumber": "9988776655",
+                    "email": "sunil@gmail.com",
+                    "cityArea": "Sector 17, Chandigarh",
+                    "vehicleType": "Walk",
+                    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2"
+                },
+                "listView": {
+                    "name": "Sunil Verma",
+                    "phone": "9988776655",
+                    "city": "Chandigarh",
+                    "status": "Active",
+                    "assignedOrdersCount": 5
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP004",
+                "registrationData": {
+                    "name": "Mohit Sharma",
+                    "mobileNumber": "9090909090",
+                    "email": "mohit@gmail.com",
+                    "cityArea": "Salt Lake, Kolkata",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+                },
+                "listView": {
+                    "name": "Mohit Sharma",
+                    "phone": "9090909090",
+                    "city": "Kolkata",
+                    "status": "Inactive",
+                    "assignedOrdersCount": 2
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP005",
+                "registrationData": {
+                    "name": "Ankit Patel",
+                    "mobileNumber": "9555566666",
+                    "email": "",
+                    "cityArea": "CG Road, Ahmedabad",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+                },
+                "listView": {
+                    "name": "Ankit Patel",
+                    "phone": "9555566666",
+                    "city": "Ahmedabad",
+                    "status": "Active",
+                    "assignedOrdersCount": 18
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP006",
+                "registrationData": {
+                    "name": "Rahul Mehta",
+                    "mobileNumber": "9000011111",
+                    "email": "rahul@gmail.com",
+                    "cityArea": "Borivali West, Mumbai",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
+                },
+                "listView": {
+                    "name": "Rahul Mehta",
+                    "phone": "9000011111",
+                    "city": "Mumbai",
+                    "status": "Active",
+                    "assignedOrdersCount": 9
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP007",
+                "registrationData": {
+                    "name": "Vikas Yadav",
+                    "mobileNumber": "9111122222",
+                    "email": "",
+                    "cityArea": "Noida Sector 62",
+                    "vehicleType": "Cycle",
+                    "image": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c"
+                },
+                "listView": {
+                    "name": "Vikas Yadav",
+                    "phone": "9111122222",
+                    "city": "Noida",
+                    "status": "Inactive",
+                    "assignedOrdersCount": 0
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP008",
+                "registrationData": {
+                    "name": "Deepak Joshi",
+                    "mobileNumber": "9222233333",
+                    "email": "deepak@gmail.com",
+                    "cityArea": "Ujjain, MP",
+                    "vehicleType": "Walk",
+                    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+                },
+                "listView": {
+                    "name": "Deepak Joshi",
+                    "phone": "9222233333",
+                    "city": "Ujjain",
+                    "status": "Active",
+                    "assignedOrdersCount": 4
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP009",
+                "registrationData": {
+                    "name": "Suresh Rana",
+                    "mobileNumber": "9333344444",
+                    "email": "",
+                    "cityArea": "Rohtak, Haryana",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce"
+                },
+                "listView": {
+                    "name": "Suresh Rana",
+                    "phone": "9333344444",
+                    "city": "Rohtak",
+                    "status": "Inactive",
+                    "assignedOrdersCount": 1
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP010",
+                "registrationData": {
+                    "name": "Nitin Malhotra",
+                    "mobileNumber": "9444455555",
+                    "email": "nitin@gmail.com",
+                    "cityArea": "Ludhiana, Punjab",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9"
+                },
+                "listView": {
+                    "name": "Nitin Malhotra",
+                    "phone": "9444455555",
+                    "city": "Ludhiana",
+                    "status": "Active",
+                    "assignedOrdersCount": 7
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP011",
+                "registrationData": {
+                    "name": "Arjun Singh",
+                    "mobileNumber": "9555567777",
+                    "email": "",
+                    "cityArea": "Ajmer, Rajasthan",
+                    "vehicleType": "Cycle",
+                    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"
+                },
+                "listView": {
+                    "name": "Arjun Singh",
+                    "phone": "9555567777",
+                    "city": "Ajmer",
+                    "status": "Inactive",
+                    "assignedOrdersCount": 0
+                },
+                "orderHistory": []
+            },
+            {
+                "partnerId": "DP012",
+                "registrationData": {
+                    "name": "Karan Gupta",
+                    "mobileNumber": "9666678888",
+                    "email": "karan@gmail.com",
+                    "cityArea": "Bhopal, MP",
+                    "vehicleType": "Bike",
+                    "image": "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7"
+                },
+                "listView": {
+                    "name": "Karan Gupta",
+                    "phone": "9666678888",
+                    "city": "Bhopal",
+                    "status": "Active",
+                    "assignedOrdersCount": 11
+                },
+                "orderHistory": []
+            }
+        ]
+    }
+}

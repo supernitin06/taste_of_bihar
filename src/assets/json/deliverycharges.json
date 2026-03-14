@@ -1,0 +1,65 @@
+{
+    "deliveryChargesManagement": {
+        "pricingModes": [
+            "FlatFeePerCity",
+            "RestaurantWise",
+            "OrderValueBased"
+        ],
+
+        "flatDeliveryFeePerCity": [{
+                "city": "Mumbai",
+                "deliveryFee": 40,
+                "isActive": true
+            },
+            {
+                "city": "Delhi",
+                "deliveryFee": 35,
+                "isActive": true
+            },
+            {
+                "city": "Bangalore",
+                "deliveryFee": 30,
+                "isActive": false
+            }
+        ],
+
+        "restaurantWiseDeliveryCharge": [{
+                "restaurantId": "RES001",
+                "restaurantName": "Spice Garden",
+                "city": "Mumbai",
+                "deliveryFee": 25,
+                "isActive": true
+            },
+            {
+                "restaurantId": "RES004",
+                "restaurantName": "Royal Biryani",
+                "city": "Hyderabad",
+                "deliveryFee": 20,
+                "isActive": true
+            }
+        ],
+
+        "orderValueBasedDeliveryFee": {
+            "rules": [{
+                    "minOrderValue": 0,
+                    "maxOrderValue": 299,
+                    "deliveryFee": 40,
+                    "label": "Below ₹300"
+                },
+                {
+                    "minOrderValue": 300,
+                    "maxOrderValue": null,
+                    "deliveryFee": 20,
+                    "label": "Above ₹300"
+                }
+            ],
+            "isActive": true
+        },
+
+        "activeRulePriority": [
+            "OrderValueBased",
+            "RestaurantWise",
+            "FlatFeePerCity"
+        ]
+    }
+}

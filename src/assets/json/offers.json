@@ -1,0 +1,190 @@
+{
+    "offersManagement": {
+        "searchAndFilter": {
+            "searchBy": ["code", "title"],
+            "filterByStatus": ["Active", "Expired", "Inactive"]
+        },
+        "offersList": [{
+                "offerId": "OFF001",
+                "columns": {
+                    "title": "Mega Sale",
+                    "discountType": "Flat",
+                    "discountValue": 100,
+                    "status": "Active"
+                },
+                "offerDetail": {
+                    "title": "Mega Sale",
+                    "discountType": "Flat",
+                    "discountValue": 100,
+                    "validity": { "startDate": "2024-12-10", "endDate": "2025-01-10" },
+                    "minimumOrderValue": 500,
+                    "usageLimit": 50
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "offerId": "OFF002",
+                "columns": {
+                    "title": "Winter Bonanza",
+                    "discountType": "%",
+                    "discountValue": 20,
+                    "status": "Active"
+                },
+                "offerDetail": {
+                    "title": "Winter Bonanza",
+                    "discountType": "%",
+                    "discountValue": 20,
+                    "validity": { "startDate": "2024-12-01", "endDate": "2025-02-28" },
+                    "minimumOrderValue": 200,
+                    "usageLimit": 150
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "offerId": "OFF003",
+                "columns": {
+                    "title": "Spring Fiesta",
+                    "discountType": "Flat",
+                    "discountValue": 50,
+                    "status": "Inactive"
+                },
+                "offerDetail": {
+                    "title": "Spring Fiesta",
+                    "discountType": "Flat",
+                    "discountValue": 50,
+                    "validity": { "startDate": "2024-03-01", "endDate": "2024-03-31" },
+                    "minimumOrderValue": 300,
+                    "usageLimit": 80
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "offerId": "OFF004",
+                "columns": {
+                    "title": "Autumn Special",
+                    "discountType": "%",
+                    "discountValue": 15,
+                    "status": "Expired"
+                },
+                "offerDetail": {
+                    "title": "Autumn Special",
+                    "discountType": "%",
+                    "discountValue": 15,
+                    "validity": { "startDate": "2024-09-01", "endDate": "2024-09-30" },
+                    "minimumOrderValue": 150,
+                    "usageLimit": 100
+                },
+                "actions": { "canEdit": false, "canDeactivate": false }
+            },
+            {
+                "offerId": "OFF005",
+                "columns": {
+                    "title": "Holiday Blast",
+                    "discountType": "Flat",
+                    "discountValue": 75,
+                    "status": "Active"
+                },
+                "offerDetail": {
+                    "title": "Holiday Blast",
+                    "discountType": "Flat",
+                    "discountValue": 75,
+                    "validity": { "startDate": "2024-12-20", "endDate": "2025-01-10" },
+                    "minimumOrderValue": 400,
+                    "usageLimit": 60
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            }
+        ],
+        "couponsList": [{
+                "couponId": "CUP001",
+                "columns": {
+                    "code": "WELCOME50",
+                    "discountType": "Flat",
+                    "discountValue": 50,
+                    "status": "Active"
+                },
+                "couponDetail": {
+                    "code": "WELCOME50",
+                    "discountType": "Flat",
+                    "discountValue": 50,
+                    "validity": { "startDate": "2024-12-01", "endDate": "2025-01-15" },
+                    "minimumOrderValue": 300,
+                    "usageLimit": 100
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "couponId": "CUP002",
+                "columns": {
+                    "code": "NEWYEAR20",
+                    "discountType": "%",
+                    "discountValue": 20,
+                    "status": "Active"
+                },
+                "couponDetail": {
+                    "code": "NEWYEAR20",
+                    "discountType": "%",
+                    "discountValue": 20,
+                    "validity": { "startDate": "2024-12-25", "endDate": "2025-01-05" },
+                    "minimumOrderValue": 200,
+                    "usageLimit": 200
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "couponId": "CUP003",
+                "columns": {
+                    "code": "FESTIVE10",
+                    "discountType": "%",
+                    "discountValue": 10,
+                    "status": "Expired"
+                },
+                "couponDetail": {
+                    "code": "FESTIVE10",
+                    "discountType": "%",
+                    "discountValue": 10,
+                    "validity": { "startDate": "2024-10-01", "endDate": "2024-10-31" },
+                    "minimumOrderValue": 150,
+                    "usageLimit": 50
+                },
+                "actions": { "canEdit": false, "canDeactivate": false }
+            },
+            {
+                "couponId": "CUP004",
+                "columns": {
+                    "code": "BIGSAVINGS100",
+                    "discountType": "Flat",
+                    "discountValue": 100,
+                    "status": "Active"
+                },
+                "couponDetail": {
+                    "code": "BIGSAVINGS100",
+                    "discountType": "Flat",
+                    "discountValue": 100,
+                    "validity": { "startDate": "2024-12-10", "endDate": "2025-01-31" },
+                    "minimumOrderValue": 500,
+                    "usageLimit": 50
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            },
+            {
+                "couponId": "CUP005",
+                "columns": {
+                    "code": "SPRING15",
+                    "discountType": "%",
+                    "discountValue": 15,
+                    "status": "Inactive"
+                },
+                "couponDetail": {
+                    "code": "SPRING15",
+                    "discountType": "%",
+                    "discountValue": 15,
+                    "validity": { "startDate": "2024-03-01", "endDate": "2024-03-31" },
+                    "minimumOrderValue": 200,
+                    "usageLimit": 100
+                },
+                "actions": { "canEdit": true, "canDeactivate": true }
+            }
+        ]
+    }
+}

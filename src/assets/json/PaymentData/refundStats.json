@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Total Refunds",
+    "value": "$8,432.00",
+    "change": "+8.4%",
+    "changeType": "increase",
+    "icon": "rotate-ccw",
+    "description": "Refunded this month"
+  },
+  {
+    "id": 2,
+    "title": "Refund Requests",
+    "value": "145",
+    "change": "+12",
+    "changeType": "increase",
+    "icon": "file-minus",
+    "description": "Total requests"
+  },
+  {
+    "id": 3,
+    "title": "Pending Refunds",
+    "value": "23",
+    "change": "-5",
+    "changeType": "decrease",
+    "icon": "clock",
+    "description": "Awaiting processing"
+  },
+  {
+    "id": 4,
+    "title": "Rejected",
+    "value": "5",
+    "change": "-2",
+    "changeType": "decrease",
+    "icon": "x-circle",
+    "description": "Denied requests"
+  }
+]

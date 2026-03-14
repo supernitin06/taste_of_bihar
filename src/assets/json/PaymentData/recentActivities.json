@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "action": "Payment received",
+    "amount": "$299.99",
+    "customer": "John Doe",
+    "time": "2 hours ago",
+    "status": "success",
+    "paymentMethod": "Credit Card"
+  },
+  {
+    "id": 2,
+    "action": "Refund processed",
+    "amount": "$149.99",
+    "customer": "Bob Wilson",
+    "time": "4 hours ago",
+    "status": "refunded",
+    "paymentMethod": "PayPal"
+  },
+  {
+    "id": 3,
+    "action": "Invoice sent",
+    "amount": "$899.99",
+    "customer": "Alice Johnson",
+    "time": "1 day ago",
+    "status": "pending",
+    "paymentMethod": "Bank Transfer"
+  },
+  {
+    "id": 4,
+    "action": "Payment failed",
+    "amount": "$599.99",
+    "customer": "Jane Smith",
+    "time": "2 days ago",
+    "status": "failed",
+    "paymentMethod": "Credit Card"
+  },
+  {
+    "id": 5,
+    "action": "Subscription renewed",
+    "amount": "$49.99",
+    "customer": "Michael Brown",
+    "time": "3 days ago",
+    "status": "success",
+    "paymentMethod": "Stripe"
+  }
+]

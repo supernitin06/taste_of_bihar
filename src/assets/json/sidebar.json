@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Dashboard",
+    "path": "/dashboard"
+  },
+  {
+    "name": "Users",
+    "path": "/users"
+  },
+  {
+    "name": "Restaurants",
+    "path": "/restaurants"
+  },
+  {
+    "name": "Delivery Partners",
+    "path": "/delivery-partners"
+  },
+  {
+    "name": "Orders",
+    "path": "/orders"
+  },
+  {
+    "name": "Payments",
+    "path": "/payments"
+  },
+  {
+    "name": "Coupons",
+    "path": "/coupons"
+  },
+  {
+    "name": "Reports",
+    "path": "/reports"
+  },
+  {
+    "name": "Support",
+    "path": "/support"
+  },
+  {
+    "name": "Sub-Admins",
+    "path": "/sub-admins"
+  },
+  {
+    "name": "Settings",
+    "path": "/settings"
+  }
+]

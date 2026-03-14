@@ -1,0 +1,98 @@
+[
+  {
+    "id": "INV-001",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1 (555) 123-4567",
+    "membership": "premium",
+    "totalOrders": 15,
+    "status": "paid",
+    "amount": "₹299.99",
+    "date": "2024-01-15",
+    "method": "Credit Card",
+    "invoice": "INV-001",
+    "customerName": "John Doe",
+    "dueDate": "2024-02-15",
+    "currency": "INR",
+    "items": [
+      { "description": "Premium Plan", "quantity": 1, "price": 299.99 }
+    ]
+  },
+  {
+    "id": "INV-002",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "phone": "+1 (555) 987-6543",
+    "membership": "enterprise",
+    "totalOrders": 8,
+    "status": "pending",
+    "amount": "₹599.99",
+    "date": "2024-01-16",
+    "method": "Bank Transfer",
+    "invoice": "INV-002",
+    "customerName": "Jane Smith",
+    "dueDate": "2024-02-16",
+    "currency": "INR",
+    "items": [
+      { "description": "Enterprise Plan", "quantity": 1, "price": 499.99 },
+      { "description": "Addon Service", "quantity": 1, "price": 100.00 }
+    ]
+  },
+  {
+    "id": "INV-003",
+    "name": "Bob Wilson",
+    "email": "bob@example.com",
+    "phone": "+1 (555) 456-7890",
+    "membership": "basic",
+    "totalOrders": 5,
+    "status": "overdue",
+    "amount": "₹149.99",
+    "date": "2023-12-15",
+    "method": "PayPal",
+    "invoice": "INV-003",
+    "customerName": "Bob Wilson",
+    "dueDate": "2024-01-15",
+    "currency": "INR",
+    "items": [
+      { "description": "Basic Plan", "quantity": 1, "price": 149.99 }
+    ]
+  },
+  {
+    "id": "INV-004",
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "phone": "+1 (555) 789-0123",
+    "membership": "premium",
+    "totalOrders": 22,
+    "status": "paid",
+    "amount": "₹899.99",
+    "date": "2024-01-10",
+    "method": "Credit Card",
+    "invoice": "INV-004",
+    "customerName": "Alice Johnson",
+    "dueDate": "2024-02-10",
+    "currency": "INR",
+    "items": [
+      { "description": "Custom Package", "quantity": 1, "price": 899.99 }
+    ]
+  },
+  {
+    "id": "INV-005",
+    "name": "Mike Brown",
+    "email": "mike@example.com",
+    "phone": "+1 (555) 321-6547",
+    "membership": "basic",
+    "totalOrders": 3,
+    "status": "draft",
+    "amount": "₹49.99",
+    "date": "2024-01-20",
+    "method": "Credit Card",
+    "invoice": "INV-005",
+    "customerName": "Mike Brown",
+    "dueDate": "2024-02-20",
+    "currency": "INR",
+    "items": [
+      { "description": "Starter Plan", "quantity": 1, "price": 49.99 }
+    ]
+  }
+]

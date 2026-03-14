@@ -1,0 +1,24 @@
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #6366f1;
+}
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #6366f1;
+}

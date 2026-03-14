@@ -1,0 +1,40 @@
+.notification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+ 
+.notification-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: white;
+}
+ 
+.notification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+ 
+.notification-card.active {
+  border-color: #6366f1; /* indigo-500 */
+  background-color: #eef2ff; /* indigo-100 */
+}
+ 
+.notification-icon {
+  width: 36px;
+  height: 36px;
+}
+ 
+.notification-text h3 {
+  font-size: 1rem;
+}
+ 
+.notification-text p {
+  font-size: 0.8rem;
+}

@@ -1,0 +1,178 @@
+{
+    "usersManagement": {
+        "searchAndFilter": {
+            "searchBy": ["name", "phone"],
+            "filterByStatus": ["Active", "Blocked", "Inactive"]
+        },
+        "usersList": [{
+                "userId": "USR001",
+                "columns": {
+                    "name": "Aman Verma",
+                    "phone": "9876543210",
+                    "totalOrders": 18,
+                    "status": "Active"
+                },
+                "userDetail": {
+                    "profileInfo": {
+                        "fullName": "Aman Verma",
+                        "email": "aman@gmail.com",
+                        "phone": "9876543210",
+                        "joinedDate": "2024-01-10"
+                    },
+                    "savedAddresses": [{
+                            "addressId": "ADD001",
+                            "label": "Home",
+                            "fullAddress": "MG Road, Andheri East, Mumbai"
+                        },
+                        {
+                            "addressId": "ADD002",
+                            "label": "Office",
+                            "fullAddress": "BKC, Bandra East, Mumbai"
+                        }
+                    ],
+                    "orderHistory": [{
+                        "orderId": "ORD001",
+                        "restaurantName": "Spice Garden",
+                        "amount": 520,
+                        "orderDate": "2024-11-12",
+                        "status": "Delivered"
+                    }]
+                },
+                "actions": {
+                    "canBlock": true,
+                    "canUnblock": false
+                }
+            },
+
+            {
+                "userId": "USR002",
+                "columns": {
+                    "name": "Neha Singh",
+                    "phone": "9123456789",
+                    "totalOrders": 6,
+                    "status": "Inactive"
+                },
+                "userDetail": {
+                    "profileInfo": {
+                        "fullName": "Neha Singh",
+                        "email": "neha@gmail.com",
+                        "phone": "9123456789",
+                        "joinedDate": "2024-03-22"
+                    },
+                    "savedAddresses": [{
+                        "addressId": "ADD003",
+                        "label": "Home",
+                        "fullAddress": "Sector 15, Noida"
+                    }],
+                    "orderHistory": []
+                },
+                "actions": {
+                    "canBlock": true,
+                    "canUnblock": false
+                }
+            },
+
+            {
+                "userId": "USR003",
+                "columns": {
+                    "name": "Rohit Kumar",
+                    "phone": "9988776655",
+                    "totalOrders": 42,
+                    "status": "Blocked"
+                },
+                "userDetail": {
+                    "profileInfo": {
+                        "fullName": "Rohit Kumar",
+                        "email": "rohit@gmail.com",
+                        "phone": "9988776655",
+                        "joinedDate": "2023-08-05"
+                    },
+                    "savedAddresses": [{
+                        "addressId": "ADD004",
+                        "label": "Home",
+                        "fullAddress": "Kankarbagh, Patna"
+                    }],
+                    "orderHistory": [{
+                        "orderId": "ORD020",
+                        "restaurantName": "Royal Biryani",
+                        "amount": 890,
+                        "orderDate": "2024-09-10",
+                        "status": "Delivered"
+                    }]
+                },
+                "actions": {
+                    "canBlock": false,
+                    "canUnblock": true
+                }
+            },
+
+            {
+                "userId": "USR004",
+                "columns": {
+                    "name": "Pooja Mehta",
+                    "phone": "9090909090",
+                    "totalOrders": 12,
+                    "status": "Active"
+                },
+                "userDetail": {
+                    "profileInfo": {
+                        "fullName": "Pooja Mehta",
+                        "email": "pooja@gmail.com",
+                        "phone": "9090909090",
+                        "joinedDate": "2024-02-14"
+                    },
+                    "savedAddresses": [{
+                        "addressId": "ADD005",
+                        "label": "Home",
+                        "fullAddress": "Salt Lake, Kolkata"
+                    }],
+                    "orderHistory": [{
+                        "orderId": "ORD031",
+                        "restaurantName": "Cafe Delight",
+                        "amount": 340,
+                        "orderDate": "2024-12-01",
+                        "status": "Delivered"
+                    }]
+                },
+                "actions": {
+                    "canBlock": true,
+                    "canUnblock": false
+                }
+            },
+
+            {
+                "userId": "USR005",
+                "columns": {
+                    "name": "Arjun Malik",
+                    "phone": "9898989898",
+                    "totalOrders": 27,
+                    "status": "Active"
+                },
+                "userDetail": {
+                    "profileInfo": {
+                        "fullName": "Arjun Malik",
+                        "email": "arjun@gmail.com",
+                        "phone": "9898989898",
+                        "joinedDate": "2023-11-30"
+                    },
+                    "savedAddresses": [{
+                        "addressId": "ADD006",
+                        "label": "Home",
+                        "fullAddress": "Sector 29, Gurgaon"
+                    }],
+                    "orderHistory": [{
+                        "orderId": "ORD055",
+                        "restaurantName": "Grill House",
+                        "amount": 760,
+                        "orderDate": "2024-10-18",
+                        "status": "Delivered"
+                    }]
+                },
+                "actions": {
+                    "canBlock": true,
+                    "canUnblock": false
+                }
+            }
+        ]
+    }
+}

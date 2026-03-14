@@ -1,0 +1,38 @@
+[
+  {
+    "id": "REF-001",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1 (555) 123-4567",
+    "membership": "premium",
+    "totalOrders": 15,
+    "status": "completed",
+    "amount": "$149.99",
+    "date": "2024-01-15",
+    "method": "Credit Card",
+    "invoice": "INV-001",
+    "transactionId": "TXN-001",
+    "customerName": "John Doe",
+    "refundDate": "2024-01-16",
+    "refundMethod": "Original Payment",
+    "reason": "Product not as described"
+  },
+  {
+    "id": "REF-002",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "phone": "+1 (555) 987-6543",
+    "membership": "basic",
+    "totalOrders": 8,
+    "status": "pending",
+    "amount": "$89.99",
+    "date": "2024-01-14",
+    "method": "PayPal",
+    "invoice": "INV-002",
+    "transactionId": "TXN-002",
+    "customerName": "Jane Smith",
+    "refundDate": "2024-01-15",
+    "refundMethod": "Original Payment",
+    "reason": "Changed mind"
+  }
+]

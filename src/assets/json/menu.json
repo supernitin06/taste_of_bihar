@@ -1,0 +1,146 @@
+{
+    "success": true,
+    "data": [{
+            "_id": "695779ff6fc3958cd3972e15",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972e00",
+                "name": "Beverages"
+            },
+            "name": "Masala Chai",
+            "basePrice": 30,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.875Z",
+            "updatedAt": "2026-01-02T07:55:43.875Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e12",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972dfd",
+                "name": "Desserts"
+            },
+            "name": "Gulab Jamun",
+            "basePrice": 90,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.803Z",
+            "updatedAt": "2026-01-02T07:55:43.803Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e0f",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972df9",
+                "name": "Breads"
+            },
+            "name": "Butter Naan",
+            "basePrice": 40,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.733Z",
+            "updatedAt": "2026-01-02T07:55:43.733Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e0c",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972df5",
+                "name": "Main Course"
+            },
+            "name": "Dal Makhani",
+            "basePrice": 240,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [
+                "BEST_SELLER"
+            ],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.650Z",
+            "updatedAt": "2026-01-02T07:55:43.650Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e09",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972df5",
+                "name": "Main Course"
+            },
+            "name": "Butter Chicken",
+            "basePrice": 320,
+            "foodType": "NON_VEG",
+            "isVeg": false,
+            "tags": [
+                "CHEF_SPECIAL"
+            ],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.576Z",
+            "updatedAt": "2026-01-02T07:55:43.576Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e06",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972df2",
+                "name": "Starters"
+            },
+            "name": "Veg Manchurian",
+            "basePrice": 180,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [
+                "SPICY"
+            ],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.502Z",
+            "updatedAt": "2026-01-02T07:55:43.502Z",
+            "__v": 0
+        },
+        {
+            "_id": "695779ff6fc3958cd3972e03",
+            "restaurantId": "69576acfd4e05e92cee77736",
+            "categoryId": {
+                "_id": "695779ff6fc3958cd3972df2",
+                "name": "Starters"
+            },
+            "name": "Paneer Tikka",
+            "basePrice": 220,
+            "foodType": "VEG",
+            "isVeg": true,
+            "tags": [
+                "BEST_SELLER",
+                "SPICY"
+            ],
+            "isAvailable": true,
+            "variants": [],
+            "addons": [],
+            "createdAt": "2026-01-02T07:55:43.434Z",
+            "updatedAt": "2026-01-02T07:55:43.434Z",
+            "__v": 0
+        }
+    ]
+}

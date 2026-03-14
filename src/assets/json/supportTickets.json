@@ -1,0 +1,165 @@
+{
+    "supportTickets": {
+        "searchAndFilter": {
+            "searchBy": ["ticketId", "subject", "customerName", "customerEmail"],
+            "filterByStatus": ["Open", "Pending", "Resolved", "Closed"],
+            "filterByPriority": ["Low", "Medium", "High", "Urgent"]
+        },
+        "ticketsList": [{
+                "ticketId": "TKT001",
+                "columns": {
+                    "subject": "Order not delivered",
+                    "customerName": "Rahul Sharma",
+                    "customerEmail": "rahul@example.com",
+                    "priority": "High",
+                    "status": "Open",
+                    "createdAt": "2025-12-28"
+                },
+                "ticketDetail": {
+                    "customerId": "CUST123",
+                    "orderId": "ORD45678",
+                    "subject": "Order not delivered",
+                    "message": "I placed an order yesterday but it still shows pending and no delivery partner assigned.",
+                    "priority": "High",
+                    "status": "Open",
+                    "createdAt": "2025-12-28T10:30:00",
+                    "updatedAt": "2025-12-30T14:20:00",
+                    "conversation": [{
+                            "id": 1,
+                            "sender": "customer",
+                            "message": "I placed an order yesterday but it still shows pending and no delivery partner assigned.",
+                            "timestamp": "2025-12-28T10:30:00",
+                            "attachments": []
+                        },
+                        {
+                            "id": 2,
+                            "sender": "admin",
+                            "message": "We're checking with the restaurant and delivery partner. We'll update you soon.",
+                            "timestamp": "2025-12-28T11:15:00",
+                            "attachments": []
+                        },
+                        {
+                            "id": 3,
+                            "sender": "customer",
+                            "message": "It's been 2 days now. Please refund my amount.",
+                            "timestamp": "2025-12-30T09:45:00",
+                            "attachments": ["/images/ticket-screenshot1.jpg"]
+                        }
+                    ]
+                },
+                "actions": {
+                    "canReply": true,
+                    "canClose": true
+                }
+            },
+            {
+                "ticketId": "TKT002",
+                "columns": {
+                    "subject": "Wrong item received",
+                    "customerName": "Priya Singh",
+                    "customerEmail": "priya.singh@gmail.com",
+                    "priority": "Medium",
+                    "status": "Pending",
+                    "createdAt": "2025-12-27"
+                },
+                "ticketDetail": {
+                    "customerId": "CUST456",
+                    "orderId": "ORD45679",
+                    "subject": "Wrong item received",
+                    "message": "I ordered Veg Biryani but received Chicken Biryani.",
+                    "priority": "Medium",
+                    "status": "Pending",
+                    "createdAt": "2025-12-27T18:20:00",
+                    "updatedAt": "2025-12-29T16:10:00",
+                    "conversation": [{
+                            "id": 1,
+                            "sender": "customer",
+                            "message": "I ordered Veg Biryani but received Chicken Biryani.",
+                            "timestamp": "2025-12-27T18:20:00",
+                            "attachments": ["/images/wrong-item1.jpg", "/images/wrong-item2.jpg"]
+                        },
+                        {
+                            "id": 2,
+                            "sender": "admin",
+                            "message": "Sorry for the inconvenience. We're issuing a full refund and a ₹100 coupon for your next order.",
+                            "timestamp": "2025-12-29T16:10:00",
+                            "attachments": []
+                        }
+                    ]
+                },
+                "actions": {
+                    "canReply": true,
+                    "canClose": true
+                }
+            },
+            {
+                "ticketId": "TKT003",
+                "columns": {
+                    "subject": "Payment issue",
+                    "customerName": "Amit Kumar",
+                    "customerEmail": "amit.k@gmail.com",
+                    "priority": "Low",
+                    "status": "Resolved",
+                    "createdAt": "2025-12-20"
+                },
+                "ticketDetail": {
+                    "subject": "Payment issue",
+                    "message": "Money deducted twice for the same order.",
+                    "priority": "Low",
+                    "status": "Resolved",
+                    "createdAt": "2025-12-20T12:00:00",
+                    "updatedAt": "2025-12-22T10:30:00",
+                    "conversation": [{
+                            "id": 1,
+                            "sender": "customer",
+                            "message": "Money deducted twice for the same order.",
+                            "timestamp": "2025-12-20T12:00:00",
+                            "attachments": []
+                        },
+                        {
+                            "id": 2,
+                            "sender": "admin",
+                            "message": "Extra amount has been refunded. It will reflect in 3-5 business days.",
+                            "timestamp": "2025-12-22T10:30:00",
+                            "attachments": []
+                        }
+                    ]
+                },
+                "actions": {
+                    "canReply": false,
+                    "canClose": false
+                }
+            },
+            {
+                "ticketId": "TKT004",
+                "columns": {
+                    "subject": "App crashing on checkout",
+                    "customerName": "Neha Gupta",
+                    "customerEmail": "neha.gupta@yahoo.com",
+                    "priority": "Urgent",
+                    "status": "Open",
+                    "createdAt": "2025-12-31"
+                },
+                "ticketDetail": {
+                    "subject": "App crashing on checkout",
+                    "message": "Every time I try to place order, app crashes at payment page.",
+                    "priority": "Urgent",
+                    "status": "Open",
+                    "createdAt": "2025-12-31T08:15:00",
+                    "updatedAt": "2025-12-31T08:15:00",
+                    "conversation": [{
+                        "id": 1,
+                        "sender": "customer",
+                        "message": "Every time I try to place order, app crashes at payment page. Using Android 14.",
+                        "timestamp": "2025-12-31T08:15:00",
+                        "attachments": ["/videos/app-crash.mp4"]
+                    }]
+                },
+                "actions": {
+                    "canReply": true,
+                    "canClose": true
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "paymentsAndRefundsManagement": {
+        "paymentsList": [{
+                "paymentId": "PAY001",
+                "orderId": "ORD001",
+                "paymentMethod": "UPI",
+                "amount": 415,
+                "status": "Success",
+                "paymentDate": "2024-12-20 11:32"
+            },
+            {
+                "paymentId": "PAY002",
+                "orderId": "ORD002",
+                "paymentMethod": "Cash on Delivery",
+                "amount": 330,
+                "status": "Pending",
+                "paymentDate": "2024-12-20 11:48"
+            },
+            {
+                "paymentId": "PAY003",
+                "orderId": "ORD003",
+                "paymentMethod": "Card",
+                "amount": 390,
+                "status": "Success",
+                "paymentDate": "2024-12-20 12:07"
+            },
+            {
+                "paymentId": "PAY004",
+                "orderId": "ORD004",
+                "paymentMethod": "UPI",
+                "amount": 260,
+                "status": "Refunded",
+                "paymentDate": "2024-12-20 12:26"
+            }
+        ],
+
+        "refundRequests": [{
+                "refundId": "REF001",
+                "orderId": "ORD004",
+                "paymentId": "PAY004",
+                "amount": 260,
+                "reason": "Order cancelled by restaurant",
+                "requestedBy": "User",
+                "requestDate": "2024-12-20 12:30",
+                "status": "Pending",
+                "actions": {
+                    "canApproveRefund": true,
+                    "canRejectRefund": true
+                }
+            },
+            {
+                "refundId": "REF002",
+                "orderId": "ORD010",
+                "paymentId": "PAY010",
+                "amount": 520,
+                "reason": "Wrong items delivered",
+                "requestedBy": "User",
+                "requestDate": "2024-12-18 18:40",
+                "status": "Approved",
+                "approvedDate": "2024-12-19 10:15",
+                "actions": {
+                    "canApproveRefund": false,
+                    "canRejectRefund": false
+                }
+            }
+        ]
+    }
+}

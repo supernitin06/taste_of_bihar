@@ -1,0 +1,129 @@
+@import "tailwindcss";
+/* Enable class-based dark mode (Tailwind v4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 20px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.4);
+}
+
+.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.6);
+}
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide {
+  overflow: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* =========================================
+   PAGE BACKGROUND
+   ========================================= */
+.page-background {
+  @apply bg-orange-50/30 dark:bg-gray-950 transition-colors duration-500;
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(211, 47, 47, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(255, 193, 7, 0.05) 0%, transparent 40%);
+}
+
+.vibrant-gradient {
+  background: linear-gradient(135deg, #d32f2f 0%, #ffc107 100%);
+}
+
+.text-vibrant {
+  background: linear-gradient(to right, #d32f2f, #ffc107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  @apply bg-white/60 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl;
+}
+
+.glass-vibrant {
+  @apply bg-white/40 dark:bg-red-900/10 backdrop-blur-2xl border border-red-500/20 shadow-2xl;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  @apply bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-white/20 dark:border-gray-700/50 shadow-xl;
+}
