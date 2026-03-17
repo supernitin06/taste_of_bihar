@@ -40,20 +40,17 @@ const RevenueChart = () => {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mb-2">{label}</p>
-          <div className="space-y-1">
-            <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              Revenue: <span className="font-bold text-blue-600 dark:text-blue-400">
-                <FaIndianRupeeSign className="inline w-3 h-3 mr-0.5" />
-                {payload[0]?.value?.toLocaleString() || 0}
-              </span>
+        <div className="glass p-4 rounded-3xl shadow-2xl border border-white/20 animate-scaleIn">
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{label}</p>
+          <div className="space-y-2">
+            <p className="text-sm font-black text-bihar-maroon dark:text-white flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]"></span>
+              Revenue: <span className="text-blue-600 text-lg ml-auto">₹{payload[0]?.value?.toLocaleString() || 0}</span>
             </p>
             {payload[1] && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-red-500"></span>
-                Orders: <span className="font-bold text-red-500 dark:text-red-400">{payload[1]?.value}</span>
+              <p className="text-sm font-black text-bihar-maroon dark:text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+                Orders: <span className="text-red-500 ml-auto">{payload[1]?.value}</span>
               </p>
             )}
           </div>
@@ -64,20 +61,17 @@ const RevenueChart = () => {
   };
 
   return (
-    <div className="bg-primary rounded-2xl p-6 shadow-sm border border-white/20 dark:border-gray-700">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+    <div className="premium-card p-8 group">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-10">
         <div className="w-full sm:w-auto">
-          <h3 className="text-xl font-bold text-primary mb-1">Total Revenue</h3>
-          <div className="flex items-center gap-3">
-            <p className="flex items-center gap-1 text-3xl font-bold text-primary">
-              <FaIndianRupeeSign className="text-2xl" />
-              {totalRevenue.toLocaleString()}
-            </p>
-
-            <div className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${revenueGrowth >= 0 ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'}`}>
-              <TrendingUp className={`w-3.5 h-3.5 ${revenueGrowth < 0 ? 'rotate-180' : ''}`} />
-              {revenueGrowth >= 0 ? '+' : ''}{revenueGrowth}%
-            </div>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Revenue Analytics</p>
+          <div className="flex items-center gap-4">
+             <h3 className="text-4xl font-black text-bihar-red dark:text-white font-display">
+                ₹{totalRevenue.toLocaleString()}
+             </h3>
+             <div className={`px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider ${revenueGrowth >= 0 ? 'bg-green-500/10 text-green-600' : 'bg-red-500/10 text-red-600'}`}>
+                {revenueGrowth >= 0 ? '↑' : '↓'} {Math.abs(revenueGrowth)}%
+             </div>
           </div>
         </div>
         <div className="w-full sm:w-auto">
@@ -85,79 +79,77 @@ const RevenueChart = () => {
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
             options={["Last 6 Months", "Last 3 Months", "Last Month", "This Year"]}
-            className="w-full sm:w-40"
+            className="w-full sm:w-48 bg-white/50 border-white/20"
           />
         </div>
       </div>
 
-      <div className="h-64">
+      <div className="h-72">
         {isLoading ? (
           <div className="h-full flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <Loader2 className="w-10 h-10 animate-spin text-bihar-red" />
           </div>
         ) : isError ? (
-          <div className="h-full flex items-center justify-center text-red-500">
-            Failed to load chart data
+          <div className="h-full flex items-center justify-center text-red-500 font-bold">
+            Data loading failed
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-            <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="5 5" stroke={gridColor} vertical={false} strokeOpacity={0.2} />
               <XAxis
                 dataKey="name"
-                tick={{ fill: axisColor, fontSize: 12 }}
-                axisLine={{ stroke: gridColor }}
-                label={{ value: 'Period', position: 'insideBottom', offset: -10, fill: axisColor, fontSize: 12 }}
+                tick={{ fill: axisColor, fontSize: 10, fontWeight: 700 }}
+                axisLine={false}
+                tickLine={false}
               />
-              {/* Left Y-Axis for Revenue */}
               <YAxis
                 yAxisId="left"
-                tick={{ fill: axisColor, fontSize: 12 }}
-                axisLine={{ stroke: gridColor }}
-                label={{ value: 'Revenue', angle: -90, position: 'insideLeft', offset: 0, fill: '#2563eb', fontSize: 12 }}
+                tick={{ fill: axisColor, fontSize: 10, fontWeight: 700 }}
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={(val) => `₹${val/1000}k`}
               />
-              {/* Right Y-Axis for Orders */}
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                tick={{ fill: axisColor, fontSize: 12 }}
-                axisLine={{ stroke: gridColor }}
-                label={{ value: 'Orders', angle: 90, position: 'insideRight', offset: 0, fill: '#eb2528', fontSize: 12 }}
+                hide={true}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip />} cursor={{ stroke: axisColor, strokeWidth: 1, strokeDasharray: '5 5' }} />
               <Line
                 yAxisId="left"
                 type="monotone"
                 dataKey="revenue"
-                name="Revenue"
                 stroke="#2563eb"
-                strokeWidth={3}
-                dot={{ fill: '#2563eb', r: 4 }}
-                activeDot={{ r: 6 }}
+                strokeWidth={4}
+                dot={false}
+                activeDot={{ r: 8, strokeWidth: 0, fill: '#2563eb' }}
+                animationDuration={2000}
               />
               <Line
                 yAxisId="right"
                 type="monotone"
                 dataKey="orders"
-                name="Orders"
-                stroke="#eb2528"
+                stroke="#ef4444"
                 strokeWidth={3}
-                dot={{ fill: '#eb2528', r: 4 }}
-                activeDot={{ r: 6 }}
+                strokeDasharray="5 5"
+                dot={false}
+                activeDot={{ r: 6, strokeWidth: 0, fill: '#ef4444' }}
+                animationDuration={2000}
               />
             </LineChart>
           </ResponsiveContainer>
         )}
       </div>
 
-      <div className="flex items-center justify-center gap-8 mt-4">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#2563eb]"></div>
-          <span className="text-sm font-medium text-primary opacity-70">Revenue</span>
+      <div className="flex items-center justify-center gap-10 mt-8">
+        <div className="flex items-center gap-3">
+          <div className="w-4 h-1.5 rounded-full bg-[#2563eb]"></div>
+          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Net Revenue</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#eb2528]"></div>
-          <span className="text-sm font-medium text-primary opacity-70">Orders</span>
+        <div className="flex items-center gap-3">
+          <div className="w-4 h-1.5 rounded-full bg-[#ef4444] opacity-50"></div>
+          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Order Volume</span>
         </div>
       </div>
     </div>

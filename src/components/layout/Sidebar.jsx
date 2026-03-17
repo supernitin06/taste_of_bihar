@@ -21,7 +21,11 @@ import {
   GripVertical,
   Receipt,
   RefreshCw,
-  FileText
+  FileText,
+  PartyPopper,
+  Cake,
+  Heart,
+  Diamond
 } from "lucide-react";
 import { FiClock } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
@@ -213,6 +217,17 @@ const Sidebar = ({ theme = "dark" }) => {
     },
     { id: "offers", label: "Offers", icon: FaCog, path: "/offers" },
     { id: "reviews", label: "Reviews", icon: MessageSquare, path: "/reviews" },
+    {
+      id: "party",
+      label: "Party",
+      icon: PartyPopper,
+      hasDropdown: true,
+      subItems: [
+        { id: "birthday-party", label: "Birthday Party", path: "/party/birthday", icon: Cake },
+        { id: "kitty-party", label: "Kitty Party", path: "/party/kitty", icon: Users },
+        { id: "anniversary-party", label: "Anniversary Party", path: "/party/anniversary", icon: Heart },
+      ],
+    },
     { id: "settings", label: "Settings", icon: FaCog, path: "/settings" },
   ];
 

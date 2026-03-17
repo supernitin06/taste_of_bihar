@@ -14,20 +14,20 @@ const BiharButton = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-bihari-md active:scale-95';
+  const baseStyles = 'font-black uppercase tracking-widest rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 active:scale-95 disabled:grayscale disabled:opacity-50';
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-5 py-2.5 text-base',
-    lg: 'px-7 py-3.5 text-lg',
+    sm: 'px-4 py-2 text-[10px]',
+    md: 'px-8 py-3.5 text-[10px]',
+    lg: 'px-12 py-5 text-sm',
   };
 
   const variantStyles = {
-    primary: 'vibrant-gradient text-white hover:shadow-bihari-lg hover:scale-105 disabled:opacity-50',
-    secondary: 'bg-white text-bihar-red border border-bihar-red/20 hover:bg-bihar-red hover:text-white shadow-bihari-md disabled:opacity-50',
-    outline: 'border-2 border-bihar-red text-bihar-red hover:bg-bihar-red hover:text-white disabled:opacity-50',
-    success: 'bg-bihar-green text-white hover:bg-bihar-green-dark shadow-bihari-md disabled:opacity-50',
-    danger: 'bg-red-600 text-white hover:bg-red-700 disabled:opacity-50',
+    primary: 'vibrant-gradient text-white shadow-bihari-lg hover:shadow-2xl hover:scale-105 relative overflow-hidden group',
+    secondary: 'bg-white dark:bg-white/5 text-bihar-red dark:text-white border border-gray-100 dark:border-white/5 hover:border-bihar-red hover:shadow-bihari-sm',
+    outline: 'border-2 border-bihar-red text-bihar-red dark:text-bihar-red hover:bg-bihar-red hover:text-white',
+    success: 'bg-bihar-green text-white hover:shadow-bihari-lg',
+    danger: 'bg-bihar-red text-white hover:shadow-bihari-lg',
   };
 
   return (
@@ -43,8 +43,11 @@ const BiharButton = ({
       disabled={disabled}
       {...props}
     >
-      {icon && <span>{icon}</span>}
-      {children}
+      {variant === 'primary' && (
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      )}
+      {icon && <span className="relative z-10">{icon}</span>}
+      <span className="relative z-10">{children}</span>
     </button>
   );
 };

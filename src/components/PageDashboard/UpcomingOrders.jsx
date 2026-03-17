@@ -14,28 +14,18 @@ const UpcomingOrders = ({ title, orders, icon: Icon, color }) => {
     const [updateOrderStatus] = useUpdateOrderStatusMutation({ refetchOnMountOrArgChange: true });
     const navigate = useNavigate();
 
-    const colorClasses = {
-        orange: {
-            bg: 'bg-orange-50 dark:bg-orange-900/20',
-            text: 'text-orange-600 dark:text-orange-400',
-            iconBg: 'bg-orange-100 dark:bg-orange-900/30',
-        },
-        blue: {
-            bg: 'bg-blue-50 dark:bg-blue-900/20',
-            text: 'text-blue-600 dark:text-blue-400',
-            iconBg: 'bg-blue-100 dark:bg-blue-900/30',
-        },
+    const classes = {
+        iconBg: 'bg-bihar-red/10',
+        text: 'text-bihar-red',
     };
 
     const statusStyles = {
-        placed: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
-        preparing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
-        packing: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
-        confirmed: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
-        cooking: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300'
+        placed: 'bg-orange-500/10 text-orange-600',
+        preparing: 'bg-blue-500/10 text-blue-600',
+        packing: 'bg-indigo-500/10 text-indigo-600',
+        confirmed: 'bg-cyan-500/10 text-cyan-600',
+        cooking: 'bg-yellow-500/10 text-yellow-600'
     };
-
-    const classes = colorClasses[color] || colorClasses.orange;
 
     const handleUpdateStatus = async (orderId, newStatus) => {
         try {
@@ -72,28 +62,23 @@ const UpcomingOrders = ({ title, orders, icon: Icon, color }) => {
     };
 
     return (
-        <div className="h-full max-h-[600px] overflow-hidden flex flex-col bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/20 dark:border-gray-800 transition-all duration-300 relative group ring-1 ring-black/5">
-
-            {/* Background Aesthetic */}
-            <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-$
-{color}-500/20 to-purple-500/20 rounded-full blur-[80px] -z-10 transition-all duration-700`} />
-
+        <div className="premium-card flex flex-col group overflow-hidden relative h-full max-h-[600px]">
             {/* Header */}
-            <div className="px-6 py-5 flex-shrink-0 border-b border-gray-100/50 dark:border-gray-800/50">
+            <div className="px-8 py-8 flex-shrink-0 border-b border-gray-100 dark:border-white/5 relative z-10">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${classes.iconBg} backdrop-blur-md shadow-lg shadow-${color}-500/10 ring-1 ring-black/5 ring-inset group-hover:scale-105 transition-transform duration-500 ease-out`}>
-                            <Icon size={26} className={classes.text} strokeWidth={2.5} />
+                    <div className="flex items-center gap-6">
+                        <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center ${classes.iconBg} shadow-lg group-hover:rotate-12 transition-transform duration-500`}>
+                            <Icon size={28} className={classes.text} />
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 tracking-tight">{title}</h3>
-                            <div className="flex items-center gap-2 mt-1">
+                            <h3 className="text-2xl font-black text-bihar-red dark:text-white font-display uppercase tracking-tight">{title}</h3>
+                            <div className="flex items-center gap-2 mt-2">
                                 <span className="relative flex h-2 w-2">
-                                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${color}-400 opacity-75`}></span>
-                                    <span className={`relative inline-flex rounded-full h-2 w-2 bg-${color}-500`}></span>
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-bihar-red opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-bihar-red"></span>
                                 </span>
-                                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                                    {orders.length} Pending
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                                    {orders.length} ACTIVE STACKS
                                 </p>
                             </div>
                         </div>
@@ -102,75 +87,70 @@ const UpcomingOrders = ({ title, orders, icon: Icon, color }) => {
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-3 scroll-smooth">
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
                 {orders.length === 0 ? (
-                    <div className="h-full flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">
-                        <div className="w-24 h-24 bg-gray-50 dark:bg-gray-800/50 rounded-full flex items-center justify-center mb-4">
-                            <Icon size={40} className="text-gray-300 dark:text-gray-600 opacity-50" />
+                    <div className="h-full flex flex-col items-center justify-center p-10 text-center animate-fade-in">
+                        <div className="w-24 h-24 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mb-6">
+                            <Icon size={40} className="text-gray-200 dark:text-gray-700" />
                         </div>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-200">No New Orders</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-[200px]">
-                            Looks like you're all caught up! Relax for a moment.
+                        <h4 className="text-xl font-black text-bihar-maroon dark:text-white uppercase tracking-widest">Plate is Clear</h4>
+                        <p className="text-xs text-gray-400 mt-2 max-w-[200px] font-bold uppercase tracking-widest leading-loose">
+                           All orders have been dispatched.
                         </p>
                     </div>
                 ) : (
                     orders.map((order, index) => (
                         <div
-                            key={order.orderId} // Use Mongo ID key
+                            key={order.orderId}
                             style={{ animationDelay: `${index * 50}ms` }}
-                            className="relative p-4 sm:p-5 rounded-2xl bg-white dark:bg-gray-800/40 border border-gray-100 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-lg dark:hover:shadow-black/20 transition-all duration-300 bg-gradient-to-br from-transparent to-gray-50/50 dark:to-gray-800/30 animate-in slide-in-from-bottom-2 fill-mode-backwards"
+                            className="relative p-6 rounded-[2rem] bg-gray-50/50 dark:bg-white/5 border border-transparent hover:border-bihar-red/20 transition-all duration-500 group/item animate-scaleIn"
                         >
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-2.5 py-1 rounded-lg shadow-md">
-                                        <span className="text-xs font-bold tracking-wider">#{order.id}</span>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="vibrant-gradient text-white px-3 py-1.5 rounded-xl shadow-lg">
+                                        <span className="text-[10px] font-black tracking-widest uppercase">#{order.id}</span>
                                     </div>
-                                    <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm ring-1 ring-inset ring-black/5 ${statusStyles[(order.status || '').toLowerCase()] || 'bg-gray-100 text-gray-600'}`}>
+                                    <span className={`text-[10px] font-black px-3 py-1.5 rounded-xl uppercase tracking-widest ${statusStyles[(order.status || '').toLowerCase()] || 'bg-gray-100 text-gray-600'}`}>
                                         {order.status}
                                     </span>
                                 </div>
                                 <div className="text-right">
-                                    <span className={`text-xl font-extrabold ${classes.text} tracking-tight`}>₹{(order.amount || 0).toFixed(2)}</span>
+                                    <span className="text-2xl font-black text-bihar-red dark:text-white font-display tracking-tight">₹{(order.amount || 0).toFixed(2)}</span>
                                 </div>
                             </div>
 
                             <div className="flex justify-between items-end">
                                 <div>
-                                    <p className="text-base font-bold text-gray-800 dark:text-gray-100 mb-1 leading-none">{order.customer}</p>
-                                    <div className="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400 mt-1">
-                                        <span>{order.time}</span>
-                                        <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                                    <p className="text-lg font-black text-bihar-maroon dark:text-white mb-2">{order.customer}</p>
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{order.time}</span>
                                         <button
                                             onClick={() => toggleExpand(order.orderId)}
-                                            className="flex items-center gap-1 hover:text-primary transition-colors focus:outline-none"
+                                            className="text-[10px] font-black text-bihar-red uppercase tracking-widest flex items-center gap-1 hover:underline"
                                         >
-                                            {order.items ? order.items.length : 0} Items
-                                            {expandedOrderId === order.orderId ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                                            {order.items ? order.items.length : 0} ITEMS {expandedOrderId === order.orderId ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                                         </button>
                                     </div>
                                 </div>
 
-                                <div className="relative">
-                                    <button
-                                        onClick={(e) => toggleMenu(e, order.orderId)} // Pass Mongo ID
-                                        className="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 dark:bg-gray-700/50 text-gray-500 hover:text-primary hover:bg-white dark:hover:bg-gray-700 border border-transparent hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-md transition-all duration-200"
-                                    >
-                                        <MoreVertical size={18} />
-                                    </button>
-                                </div>
+                                <button
+                                    onClick={(e) => toggleMenu(e, order.orderId)}
+                                    className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white dark:bg-white/5 text-gray-400 hover:text-bihar-red hover:shadow-bihari-sm transition-all duration-300 border border-gray-100 dark:border-white/5"
+                                >
+                                    <MoreVertical size={20} />
+                                </button>
                             </div>
 
-                            {/* Expanded Details Accordion */}
                             {expandedOrderId === order.orderId && order.items && (
-                                <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/50 animate-in slide-in-from-top-2 fade-in duration-200">
-                                    <ul className="space-y-2">
+                                <div className="mt-6 pt-6 border-t border-gray-100 dark:border-white/5 animate-scaleIn">
+                                    <ul className="space-y-4">
                                         {order.items.map((item, idx) => (
-                                            <li key={idx} className="flex justify-between text-xs text-gray-600 dark:text-gray-300">
-                                                <div className="flex gap-2">
-                                                    <span className="font-bold text-gray-400 dark:text-gray-500">{item.quantity}x</span>
-                                                    <span>{item.name}</span>
+                                            <li key={idx} className="flex justify-between">
+                                                <div className="flex gap-3">
+                                                    <span className="font-black text-bihar-red text-xs">{item.quantity}×</span>
+                                                    <span className="text-xs font-bold text-bihar-maroon dark:text-gray-300 uppercase tracking-wider">{item.name}</span>
                                                 </div>
-                                                <span className="font-medium">₹{item.price}</span>
+                                                <span className="text-xs font-black text-bihar-red">₹{item.price}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -182,44 +162,42 @@ const UpcomingOrders = ({ title, orders, icon: Icon, color }) => {
             </div>
 
             {/* Footer */}
-            <div className="p-4 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-t border-gray-100/50 dark:border-gray-800/50">
+            <div className="p-6 bg-gray-50/50 dark:bg-white/5 border-t border-gray-100 dark:border-white/5 relative z-10">
                 <button
                     onClick={() => navigate('/orders')}
-                    className="group relative w-full py-3 rounded-xl text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 bg-gray-100 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700"
+                    className="w-full py-4 rounded-2xl vibrant-gradient text-white text-xs font-black uppercase tracking-widest shadow-bihari-lg hover:scale-[1.02] active:scale-95 transition-all duration-500 overflow-hidden relative group"
                 >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                        View All Orders
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                        View Entire Registry
+                        <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                     </span>
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                 </button>
             </div>
 
             {/* Portal Dropdown Menu */}
             {actionsMenuOrderId && createPortal(
                 <div className="fixed inset-0 z-[9999] isolate" style={{ zIndex: 9999 }}>
-                    {/* Backdrop */}
-                    <div className="absolute inset-0 bg-transparent" onClick={closeMenu} />
-
-                    {/* The Menu */}
+                    <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px]" onClick={closeMenu} />
                     <div
-                        className="absolute w-48 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-in zoom-in-95 duration-200 ring-1 ring-black/5"
+                        className="absolute w-56 glass p-2 rounded-[2rem] shadow-2xl border border-white/20 animate-scaleIn"
                         style={{
                             top: `${menuPosition.top}px`,
                             left: `${menuPosition.left}px`
                         }}
                     >
-                        <div className="p-1 space-y-1">
+                        <div className="space-y-1">
                             <button
                                 onClick={() => handleUpdateStatus(actionsMenuOrderId, 'ACCEPTED')}
-                                className="w-full text-left px-3 py-2 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/20 text-green-600 dark:text-green-400 text-sm font-bold flex items-center gap-2 transition-colors"
+                                className="w-full text-left px-5 py-4 rounded-2xl hover:bg-green-500 hover:text-white text-green-600 text-[10px] font-black uppercase tracking-widest flex items-center gap-3 transition-all"
                             >
-                                <Check size={14} /> Accept Order
+                                <Check size={16} strokeWidth={3} /> Approve Stack
                             </button>
                             <button
                                 onClick={() => handleUpdateStatus(actionsMenuOrderId, 'REJECTED')}
-                                className="w-full text-left px-3 py-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 text-sm font-bold flex items-center gap-2 transition-colors"
+                                className="w-full text-left px-5 py-4 rounded-2xl hover:bg-red-500 hover:text-white text-red-600 text-[10px] font-black uppercase tracking-widest flex items-center gap-3 transition-all"
                             >
-                                <X size={14} /> Reject Order
+                                <X size={16} strokeWidth={3} /> Dissolve Stack
                             </button>
                         </div>
                     </div>

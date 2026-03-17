@@ -25,6 +25,9 @@ import AddMenu from "../components/menu/AddMenu";
 import CookingLoader from "../pages/Loader";
 import NewOrders from "../components/OrderPages/NewOrders";
 import ProcessingOrders from "../components/OrderPages/ProcessingOrders";
+import BirthdayParty from "../pages/party/BirthdayParty";
+import KittyParty from "../pages/party/KittyParty";
+import AnniversaryParty from "../pages/party/AnniversaryParty";
 
 import AcceptedOrders from "../components/OrderPages/AcceptedOrders";
 import PendingDeliveryPartners from "../pages/PendingDeliveryPartners";
@@ -213,6 +216,27 @@ const AppRouter = createBrowserRouter([
               {
                 path: "assign",
                 element: <AssignAdmin />,
+                loader: generalLoader,
+              },
+            ],
+          },
+          {
+            path: "party",
+            loader: generalLoader,
+            children: [
+              {
+                path: "birthday",
+                element: <BirthdayParty />,
+                loader: generalLoader,
+              },
+              {
+                path: "kitty",
+                element: <KittyParty />,
+                loader: generalLoader,
+              },
+              {
+                path: "anniversary",
+                element: <AnniversaryParty />,
                 loader: generalLoader,
               },
             ],

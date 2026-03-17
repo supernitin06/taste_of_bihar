@@ -95,6 +95,14 @@ export const menuApi = baseApi.injectEndpoints({
       invalidatesTags: ["Category"],
     }),
 
+    getQuickBytes: builder.query({
+      query: () => ({
+        url: `admin/cat/quick-bytes`,
+        method: "GET",
+      }),
+      providesTags: ["Category"],
+    }),
+
     // ================= SUB-CATEGORY =================
     getSubCategories: builder.query({
       query: () => ({
@@ -170,4 +178,5 @@ export const {
   useUpdateSubCategoryMutation,
   useToggleSubCategoryStatusMutation,
   useDeleteSubCategoryMutation,
+  useGetQuickBytesQuery,
 } = menuApi;

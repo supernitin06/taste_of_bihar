@@ -1,129 +1,109 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bihar-red: #d32f2f;
+  --color-bihar-maroon: #800000;
+  --color-bihar-maroon-dark: #4a0000;
+  --color-bihar-mustard: #ffc107;
+  --color-bihar-cream: #fff8e1;
+  --color-bihar-green: #388e3c;
+  
+  --font-display: "Outfit", "Playfair Display", serif;
+  --font-heading: "Outfit", sans-serif;
+
+  --shadow-bihari-sm: 0 4px 20px -2px rgba(211, 47, 47, 0.1);
+  --shadow-bihari-md: 0 10px 30px -5px rgba(211, 47, 47, 0.15);
+  --shadow-bihari-lg: 0 20px 50px -10px rgba(211, 47, 47, 0.2);
+
+  --animate-float: floating 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s infinite;
+}
+
 /* Enable class-based dark mode (Tailwind v4) */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* =========================================
-   CUSTOM SCROLLBAR
+   CORE BRAND UTILITIES
    ========================================= */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.3);
-  border-radius: 20px;
-}
-
-.custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.4);
-}
-
-.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.6);
-}
-
-/* Hide scrollbar but allow scroll */
-.scrollbar-hide {
-  overflow: auto;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* Chrome/Safari */
-}
-
-/* =========================================
-   PAGE BACKGROUND
-   ========================================= */
-.page-background {
-  @apply bg-orange-50/30 dark:bg-gray-950 transition-colors duration-500;
-  background-image:
-    radial-gradient(circle at 0% 0%, rgba(211, 47, 47, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 100% 100%, rgba(255, 193, 7, 0.05) 0%, transparent 40%);
-}
 
 .vibrant-gradient {
-  background: linear-gradient(135deg, #d32f2f 0%, #ffc107 100%);
+  background: linear-gradient(135deg, var(--color-bihar-red) 0%, var(--color-bihar-maroon) 100%);
+}
+
+.vibrant-gradient-soft {
+  background: linear-gradient(135deg, var(--color-bihar-red) 0%, var(--color-bihar-mustard) 100%);
 }
 
 .text-vibrant {
-  background: linear-gradient(to right, #d32f2f, #ffc107);
+  background: linear-gradient(to right, var(--color-bihar-red), var(--color-bihar-maroon));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.glass {
-  @apply bg-white/60 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl;
+.premium-card {
+  @apply bg-white dark:bg-gray-900/80 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2rem] shadow-bihari-sm hover:shadow-bihari-md hover:-translate-y-1 transition-all duration-500 overflow-hidden;
 }
 
-.glass-vibrant {
-  @apply bg-white/40 dark:bg-red-900/10 backdrop-blur-2xl border border-red-500/20 shadow-2xl;
+.glass {
+  @apply bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-white/20 dark:border-gray-700/50 shadow-xl;
+}
+
+.cultural-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23d32f2f' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 /* =========================================
    ANIMATIONS
    ========================================= */
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
 
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .animate-scaleIn {
   animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.animate-slide-up {
-  animation: slideUp 0.4s ease-out forwards;
+/* =========================================
+   SCROLLBARS
+   ========================================= */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Glassmorphism Utilities */
-.glass {
-  @apply bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-white/20 dark:border-gray-700/50 shadow-xl;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-bihar-red);
+  border-radius: 20px;
+  opacity: 0.5;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

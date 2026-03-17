@@ -7,50 +7,46 @@ import { useTheme } from '../../context/ThemeContext';
 import { useGetOrderChartQuery } from '../../api/services/dashboardApi';
 
 const OrdersOverview = () => {
-  const [selectedView, setSelectedView] = useState('This Month');
   const [activeTab, setActiveTab] = useState('Monthly');
   const { theme } = useTheme();
 
-  // Fetch data from API based on activeTab (weekly/monthly)
-  const { data: apiData, isLoading, isError, error } = useGetOrderChartQuery(activeTab.toLowerCase());
+  const { data: apiData, isLoading, isError } = useGetOrderChartQuery(activeTab.toLowerCase());
 
   const chartData = (apiData?.data || []).map(item => ({
-    name: item.period, // Map 'period' to 'name' for XAxis
+    name: item.period,
     delivered: item.delivered,
     pending: item.pending,
     cancelled: item.cancelled,
     total: item.total
   }));
 
-  useEffect(() => {
-    if (isError) {
-      console.error("OrdersOverview API Error:", error);
-    }
-  }, [isError, error]);
-
   const axisColor = theme === 'dark' ? '#9ca3af' : '#6b7280';
   const gridColor = theme === 'dark' ? '#374151' : '#e5e7eb';
-  const tooltipCursorColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(37, 99, 235, 0.05)';
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
+      const data = payload[0].payload;
       return (
-        <div className="bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mb-2">{payload[0].payload.name}</p>
-          <div className="space-y-1">
-            <p className="text-xs text-green-600 dark:text-green-400 flex justify-between w-32">
-              <span>Delivered:</span> <span className="font-bold">{payload[0]?.payload.delivered || 0}</span>
-            </p>
-            <p className="text-xs text-orange-600 dark:text-orange-400 flex justify-between w-32">
-              <span>Pending:</span> <span className="font-bold">{payload[0]?.payload.pending || 0}</span>
-            </p>
-            <p className="text-xs text-red-600 dark:text-red-400 flex justify-between w-32">
-              <span>Cancelled:</span> <span className="font-bold">{payload[0]?.payload.cancelled || 0}</span>
-            </p>
-            <div className="h-px bg-gray-200 dark:bg-gray-700 my-1" />
-            <p className="text-xs text-gray-600 dark:text-gray-400 flex justify-between w-32">
-              <span>Total:</span> <span className="font-bold">{payload[0]?.payload.total || 0}</span>
-            </p>
+        <div className="glass p-5 rounded-[2rem] shadow-2xl border border-white/20 animate-scaleIn">
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">{data.name}</p>
+          <div className="space-y-3">
+             {[
+               { label: 'Delivered', val: data.delivered, color: 'bg-green-500', text: 'text-green-500' },
+               { label: 'Pending', val: data.pending, color: 'bg-orange-500', text: 'text-orange-500' },
+               { label: 'Cancelled', val: data.cancelled, color: 'bg-red-500', text: 'text-red-500' },
+             ].map(item => (
+                <div key={item.label} className="flex items-center justify-between gap-6">
+                   <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${item.color} shadow-[0_0_8px_rgba(0,0,0,0.2)]`}></div>
+                      <span className="text-xs font-black text-bihar-maroon dark:text-white uppercase tracking-wider">{item.label}</span>
+                   </div>
+                   <span className={`text-sm font-black ${item.text}`}>{item.val}</span>
+                </div>
+             ))}
+             <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-black text-gray-400 uppercase">Total</span>
+                <span className="text-sm font-black text-bihar-red dark:text-white">{data.total}</span>
+             </div>
           </div>
         </div>
       );
@@ -59,64 +55,66 @@ const OrdersOverview = () => {
   };
 
   return (
-    <div className="bg-primary rounded-2xl p-6 shadow-lg border border-white/20 dark:border-gray-700">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-        <h3 className="text-xl font-bold text-primary">Orders Overview</h3>
-        <div className="flex items-center gap-2 flex-wrap">
-          <Button
-            variant={activeTab === 'Weekly' ? 'primary' : 'secondary'}
-            onClick={() => setActiveTab('Weekly')}
-            className="text-sm"
-          >
-            Weekly
-          </Button>
-          <Button
-            variant={activeTab === 'Monthly' ? 'primary' : 'secondary'}
-            onClick={() => setActiveTab('Monthly')}
-            className="text-sm"
-          >
-            Monthly
-          </Button>
-          <Select
-            value={selectedView}
-            onChange={(e) => setSelectedView(e.target.value)}
-            options={[
-              { value: 'This Week', label: 'This Week' },
-              { value: 'Last Week', label: 'Last Week' },
-              { value: 'This Month', label: 'This Month' },
-            ]}
-            className="w-full sm:w-auto"
-          />
+    <div className="premium-card p-8 group overflow-hidden relative">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-6">
+        <div>
+           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Fulfillment Metrics</p>
+           <h3 className="text-2xl font-black text-bihar-red dark:text-white font-display text-vibrant">Orders Flow</h3>
+        </div>
+        
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-white/5 p-2 rounded-2xl">
+          {['Weekly', 'Monthly'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-8 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${activeTab === tab ? 'vibrant-gradient text-white shadow-lg scale-105' : 'text-gray-400 hover:text-bihar-red'}`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       </div>
 
       <div className="h-72 w-full">
         {isLoading ? (
           <div className="h-full flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <Loader2 className="w-10 h-10 animate-spin text-bihar-red" />
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="5 5" stroke={gridColor} vertical={false} strokeOpacity={0.2} />
               <XAxis
                 dataKey="name"
-                tick={{ fill: axisColor, fontSize: 12 }}
-                axisLine={{ stroke: gridColor }}
-                label={{ value: 'Period', position: 'insideBottom', offset: -10, fill: axisColor, fontSize: 12 }}
+                tick={{ fill: axisColor, fontSize: 10, fontWeight: 700 }}
+                axisLine={false}
+                tickLine={false}
               />
               <YAxis
-                tick={{ fill: axisColor, fontSize: 12 }}
-                axisLine={{ stroke: gridColor }}
-                label={{ value: 'Orders', angle: -90, position: 'insideLeft', offset: 10, fill: axisColor, fontSize: 12 }}
+                tick={{ fill: axisColor, fontSize: 10, fontWeight: 700 }}
+                axisLine={false}
+                tickLine={false}
               />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: tooltipCursorColor }} />
-              <Bar dataKey="delivered" stackId="a" fill="#10b981" radius={[0, 0, 4, 4]} maxBarSize={60} />
-              <Bar dataKey="pending" stackId="a" fill="#f59e0b" maxBarSize={60} />
-              <Bar dataKey="cancelled" stackId="a" fill="#ef4444" radius={[4, 4, 0, 0]} maxBarSize={60} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(211, 47, 47, 0.05)' }} />
+              <Bar dataKey="delivered" stackId="a" fill="var(--color-bihar-green)" radius={[0, 0, 8, 8]} barSize={40} />
+              <Bar dataKey="pending" stackId="a" fill="var(--color-bihar-mustard)" barSize={40} />
+              <Bar dataKey="cancelled" stackId="a" fill="var(--color-bihar-red)" radius={[8, 8, 0, 0]} barSize={40} />
             </BarChart>
           </ResponsiveContainer>
         )}
+      </div>
+
+      <div className="flex items-center justify-center gap-10 mt-10">
+         {[
+            { label: 'Delivered', color: 'bg-bihar-green' },
+            { label: 'Pending', color: 'bg-bihar-mustard' },
+            { label: 'Cancelled', color: 'bg-bihar-red' }
+         ].map(item => (
+            <div key={item.label} className="flex items-center gap-3">
+               <div className={`w-3 h-3 rounded-full ${item.color} shadow-lg shadow-black/5`}></div>
+               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{item.label}</span>
+            </div>
+         ))}
       </div>
     </div>
   );

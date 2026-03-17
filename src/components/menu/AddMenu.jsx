@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Edit, Trash2, Upload, Eye, Utensils, Tag, DollarSign } from "lucide-react";
+import { Edit, Trash2, Upload, Eye, Utensils, Tag, DollarSign, Zap } from "lucide-react";
 
 import Button from "../ui/Button";
 import InputField from "../ui/InputField";
@@ -19,7 +19,8 @@ import {
   useGetSubCategoriesQuery,
   useAddSubCategoryMutation,
   useUpdateSubCategoryMutation,
-  useDeleteSubCategoryMutation
+  useDeleteSubCategoryMutation,
+  useGetQuickBytesQuery
 } from "../../api/services/menuApi";
 
 //  const params = useParams();
@@ -65,6 +66,7 @@ const AddMenuItem = () => {
 
   const { data: categoriesData, refetch: refetchCategories, isFetching } = useGetCategoriesQuery();
   const { data: subCategoriesData, refetch: refetchSubCategories } = useGetSubCategoriesQuery();
+  const { data: quickBytesData } = useGetQuickBytesQuery();
   
   useEffect(() => {
     console.log("🏪 Current Restaurant ID:", restaurantId);
@@ -82,17 +84,29 @@ const AddMenuItem = () => {
 
   const categories = categoriesData?.data?.categories || categoriesData?.categories || categoriesData?.data || categoriesData || [];
   const subCategories = subCategoriesData?.data || subCategoriesData || [];
+  const quickCategories = quickBytesData?.data || [];
 
   // Form States
   const [language, setLanguage] = useState("en");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
+  const [isQuickByte, setIsQuickByte] = useState(false);
+  const [quickByteCategory, setQuickByteCategory] = useState("");
+  const [showQuickByteDropdown, setShowQuickByteDropdown] = useState(false);
 
   // Category Modal States
   const [newCategoryName, setNewCategoryName] = useState("");
   const [newCategoryDescription, setNewCategoryDescription] = useState("");
   const [newCategoryFoodType, setNewCategoryFoodType] = useState("VEG");
   const [newCategoryOrder, setNewCategoryOrder] = useState(1);
+
+  // Clear selections when switching between Standard/Quick Bytes
+  useEffect(() => {
+    setCategory("");
+    setQuickByteCategory("");
+    setSubCategory("");
+  }, [isQuickByte]);
+
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -402,7 +416,12 @@ const AddMenuItem = () => {
     if (!restaurantId) missingFields.push('Restaurant context (Login again)');
     if (!name) missingFields.push('Item Name');
     if (!price) missingFields.push('Base Price');
-    if (!category) missingFields.push('Category');
+    
+    if (isQuickByte) {
+      if (!quickByteCategory) missingFields.push('Quick Byte Category');
+    } else {
+      if (!category) missingFields.push('Category');
+    }
 
     if (missingFields.length > 0) {
       console.warn("❌ Add Menu Validation Failed. Missing:", missingFields);
@@ -413,7 +432,18 @@ const AddMenuItem = () => {
       const formData = new FormData();
 
       formData.append("restaurant", String(restaurantId));
-      formData.append("category", String(category));
+      if (isQuickByte) {
+        formData.append("category", String(quickByteCategory));
+        formData.append("isQuickByte", "true");
+        if (subCategory) {
+          formData.append("subCategory", String(subCategory));
+        }
+      } else {
+        formData.append("category", String(category));
+        if (subCategory) {
+          formData.append("subCategory", String(subCategory));
+        }
+      }
       formData.append("name", name);
       formData.append("description", description);
       formData.append("basePrice", String(price));
@@ -497,6 +527,23 @@ const AddMenuItem = () => {
                   Basic Details
                 </h2>
 
+                {/* Quick Bytes Toggle */}
+                <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 rounded-2xl flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-lg">
+                      <Zap size={20} />
+                    </div>
+                    <div>
+                      <span className="block font-bold text-gray-800 dark:text-white">Quick Bytes?</span>
+                      <span className="text-xs text-gray-500">Enable for instant snacks and drinks</span>
+                    </div>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked={isQuickByte} onChange={() => setIsQuickByte(!isQuickByte)} className="sr-only peer" />
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-amber-300 dark:peer-focus:ring-amber-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-500"></div>
+                  </label>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div className="md:col-span-2">
@@ -509,89 +556,163 @@ const AddMenuItem = () => {
                     />
                   </div>
 
-                  {/* Category Selection */}
-                  <div className="relative">
-                    <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">{t('category')} <span className="text-red-500">*</span></label>
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-                        className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center"
-                      >
-                        <span className="font-medium text-gray-700 dark:text-gray-200">
-                          {categories.find(cat => cat._id === category)?.name || 'Select Category'}
-                        </span>
-                        <span className="text-gray-400">▼</span>
-                      </button>
+                  {isQuickByte ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2">
+                      {/* Quick Byte Category Selection */}
+                      <div className="relative">
+                        <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Quick Byte Category <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowQuickByteDropdown(!showQuickByteDropdown)}
+                            className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 transition-all flex justify-between items-center"
+                          >
+                            <span className="font-medium text-gray-700 dark:text-gray-200">
+                              {quickCategories.find(cat => cat._id === quickByteCategory)?.name || 'Select Quick Category'}
+                            </span>
+                            <span className="text-gray-400">▼</span>
+                          </button>
 
-                      {/* Custom Dropdown */}
-                      {showCategoryDropdown && (
-                        <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
-                          {categories.map((cat) => (
-                            <div
-                              key={cat._id}
-                              className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
-                              onClick={() => { setCategory(cat._id); setShowCategoryDropdown(false); }}
-                            >
-                              <span className="text-sm font-medium">{cat.name}</span>
-                              <div className="flex gap-2">
-                                <button onClick={(e) => { e.stopPropagation(); handleEditCategoryClick(cat); }} className="p-1.5 hover:bg-blue-100 rounded-md text-blue-600"><Edit size={14} /></button>
-                                <button onClick={(e) => { e.stopPropagation(); handleDeleteCategory(cat._id); }} className="p-1.5 hover:bg-red-100 rounded-md text-red-600"><Trash2 size={14} /></button>
+                          {showQuickByteDropdown && (
+                            <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
+                              {quickCategories.map((cat) => (
+                                <div
+                                  key={cat._id}
+                                  className="flex items-center justify-between px-4 py-3 hover:bg-amber-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
+                                  onClick={() => { setQuickByteCategory(cat._id); setSubCategory(""); setShowQuickByteDropdown(false); }}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    {cat.categoryImage && <img src={cat.categoryImage} alt="" className="w-8 h-8 rounded-lg object-cover" />}
+                                    <span className="text-sm font-medium">{cat.name}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Quick Byte SubCategory Selection */}
+                      <div className="relative">
+                        <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Quick Byte Sub-Category</label>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowSubCategoryDropdown(!showSubCategoryDropdown)}
+                            className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-amber-500 transition-all flex justify-between items-center"
+                          >
+                            <span className="font-medium text-gray-700 dark:text-gray-200">
+                              {subCategories.find(sub => sub._id === subCategory)?.name || 'Select Sub-Category'}
+                            </span>
+                            <span className="text-gray-400">▼</span>
+                          </button>
+
+                          {showSubCategoryDropdown && (
+                            <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
+                              {subCategories.filter(s => s.category?._id === quickByteCategory || s.category === quickByteCategory).map((sub) => (
+                                <div
+                                  key={sub._id}
+                                  className="flex items-center justify-between px-4 py-3 hover:bg-amber-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
+                                  onClick={() => { setSubCategory(sub._id); setShowSubCategoryDropdown(false); }}
+                                >
+                                  <span className="text-sm font-medium">{sub.name}</span>
+                                </div>
+                              ))}
+                              {subCategories.filter(s => s.category?._id === quickByteCategory || s.category === quickByteCategory).length === 0 && (
+                                <div className="px-4 py-3 text-sm text-gray-400 text-center italic">No subcategories found</div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Category Selection */}
+                      <div className="relative">
+                        <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">{t('category')} <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+                            className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center"
+                          >
+                            <span className="font-medium text-gray-700 dark:text-gray-200">
+                              {categories.find(cat => cat._id === category)?.name || 'Select Category'}
+                            </span>
+                            <span className="text-gray-400">▼</span>
+                          </button>
+
+                          {/* Custom Dropdown */}
+                          {showCategoryDropdown && (
+                            <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
+                              {categories.map((cat) => (
+                                <div
+                                  key={cat._id}
+                                  className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
+                                  onClick={() => { setCategory(cat._id); setShowCategoryDropdown(false); }}
+                                >
+                                  <span className="text-sm font-medium">{cat.name}</span>
+                                  <div className="flex gap-2">
+                                    <button onClick={(e) => { e.stopPropagation(); handleEditCategoryClick(cat); }} className="p-1.5 hover:bg-blue-100 rounded-md text-blue-600"><Edit size={14} /></button>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteCategory(cat._id); }} className="p-1.5 hover:bg-red-100 rounded-md text-red-600"><Trash2 size={14} /></button>
+                                  </div>
+                                </div>
+                              ))}
+                              <div
+                                className="p-3 sticky bottom-0 bg-primary z-30 text-center text-blue-600 font-medium cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 border-t"
+                                onClick={() => { setEditingCategory(null); setNewCategoryName(""); setShowAddCategory(true); }}
+                              >
+                                + Create New Category
                               </div>
                             </div>
-                          ))}
-                          <div
-                            className="p-3 sticky bottom-0 bg-primary z-30 text-center text-blue-600 font-medium cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 border-t"
-                            onClick={() => { setEditingCategory(null); setNewCategoryName(""); setShowAddCategory(true); }}
-                          >
-                            + Create New Category
-                          </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </div>
+                      </div>
 
-                  {/* SubCategory Selection */}
-                  <div className="relative">
-                    <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Sub-Category</label>
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setShowSubCategoryDropdown(!showSubCategoryDropdown)}
-                        className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center"
-                      >
-                        <span className="font-medium text-gray-700 dark:text-gray-200">
-                          {subCategories.find(sub => sub._id === subCategory)?.name || 'Select Sub-Category'}
-                        </span>
-                        <span className="text-gray-400">▼</span>
-                      </button>
+                      {/* SubCategory Selection */}
+                      <div className="relative">
+                        <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Sub-Category</label>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowSubCategoryDropdown(!showSubCategoryDropdown)}
+                            className="w-full px-4 py-3 text-left bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center"
+                          >
+                            <span className="font-medium text-gray-700 dark:text-gray-200">
+                              {subCategories.find(sub => sub._id === subCategory)?.name || 'Select Sub-Category'}
+                            </span>
+                            <span className="text-gray-400">▼</span>
+                          </button>
 
-                      {/* Custom SubCategory Dropdown */}
-                      {showSubCategoryDropdown && (
-                        <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
-                          {subCategories.filter(s => s.category?._id === category || s.category === category).map((sub) => (
-                            <div
-                              key={sub._id}
-                              className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
-                              onClick={() => { setSubCategory(sub._id); setShowSubCategoryDropdown(false); }}
-                            >
-                              <span className="text-sm font-medium">{sub.name}</span>
-                              <div className="flex gap-2">
-                                <button onClick={(e) => { e.stopPropagation(); handleEditSubCategoryClick(sub); }} className="p-1.5 hover:bg-blue-100 rounded-md text-blue-600"><Edit size={14} /></button>
-                                <button onClick={(e) => { e.stopPropagation(); handleDeleteSubCategory(sub._id); }} className="p-1.5 hover:bg-red-100 rounded-md text-red-600"><Trash2 size={14} /></button>
+                          {/* Custom SubCategory Dropdown */}
+                          {showSubCategoryDropdown && (
+                            <div className="absolute z-20 mt-2 w-full bg-white dark:bg-gray-800 shadow-xl rounded-xl border border-gray-100 dark:border-gray-700 max-h-60 overflow-auto animate-in fade-in zoom-in duration-200">
+                              {subCategories.filter(s => s.category?._id === category || s.category === category).map((sub) => (
+                                <div
+                                  key={sub._id}
+                                  className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-50 dark:border-gray-700/50 last:border-0"
+                                  onClick={() => { setSubCategory(sub._id); setShowSubCategoryDropdown(false); }}
+                                >
+                                  <span className="text-sm font-medium">{sub.name}</span>
+                                  <div className="flex gap-2">
+                                    <button onClick={(e) => { e.stopPropagation(); handleEditSubCategoryClick(sub); }} className="p-1.5 hover:bg-blue-100 rounded-md text-blue-600"><Edit size={14} /></button>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteSubCategory(sub._id); }} className="p-1.5 hover:bg-red-100 rounded-md text-red-600"><Trash2 size={14} /></button>
+                                  </div>
+                                </div>
+                              ))}
+                              <div
+                                className="p-3 sticky bottom-0 bg-primary z-30 text-center text-blue-600 font-medium cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 border-t"
+                                onClick={() => { setEditingSubCategory(null); setNewSubCategoryName(""); setShowAddSubCategory(true); }}
+                              >
+                                + Create New Sub-Category
                               </div>
                             </div>
-                          ))}
-                          <div
-                            className="p-3 sticky bottom-0 bg-primary z-30 text-center text-blue-600 font-medium cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 border-t"
-                            onClick={() => { setEditingSubCategory(null); setNewSubCategoryName(""); setShowAddSubCategory(true); }}
-                          >
-                            + Create New Sub-Category
-                          </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </div>
+                      </div>
+                    </>
+                  )}
 
                   {/* Price */}
                   <div>

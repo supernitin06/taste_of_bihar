@@ -5,6 +5,8 @@ import Select from '../ui/Select';
 import { useTheme } from '../../context/ThemeContext';
 import { useGetCategorySalesQuery } from '../../api/services/dashboardApi';
 
+const COLORS = ['var(--color-bihar-red)', 'var(--color-bihar-maroon)', 'var(--color-bihar-mustard)', '#3b82f6', '#10b981', '#8b5cf6'];
+
 const TopCategories = () => {
   const { theme } = useTheme();
   const [selectedPeriod, setSelectedPeriod] = useState('This Month');
@@ -19,13 +21,8 @@ const TopCategories = () => {
     periodMapping[selectedPeriod] || "monthly"
   );
 
-  const COLORS = ['#2563eb', '#eb2528', '#fbbf24', '#10b981', '#8b5cf6', '#ec4899'];
-
   const chartData = useMemo(() => {
-    console.log("Category Sales Data:", apiData);
     if (!apiData?.data) return [];
-    // Assuming API returns array of objects with { category: "Name", sales: 100 } or similar
-    // Adjust 'category' and 'sales' keys based on your actual API response
     return apiData.data.map((item, index) => ({
       name: item.category || item.name || item._id || "Unknown",
       value: item.totalSales || item.sales || item.count || item.value || 0,
@@ -36,9 +33,9 @@ const TopCategories = () => {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-primary p-3 rounded-xl shadow-sm border border-gray-200">
-          <p className="text-sm font-semibold text-primary">{payload[0].name}</p>
-          <p className="text-sm text-primary opacity-70">Sales: {payload[0].value}</p>
+        <div className="glass p-4 rounded-3xl shadow-2xl border border-white/20 animate-scaleIn">
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{payload[0].name}</p>
+          <p className="text-sm font-black text-bihar-red dark:text-white">Sales: {payload[0].value}</p>
         </div>
       );
     }
@@ -47,15 +44,15 @@ const TopCategories = () => {
 
   const CustomLegend = ({ payload }) => {
     return (
-      <div className="grid grid-cols-2 gap-3 mt-4">
+      <div className="grid grid-cols-2 gap-4 mt-8 pb-4">
         {payload.map((entry, index) => (
-          <div key={index} className="flex items-center gap-2 group cursor-pointer">
+          <div key={index} className="flex items-center gap-3 group cursor-pointer">
             <div
-              className="w-3 h-3 rounded-full transition-transform group-hover:scale-125"
+              className="w-3 h-3 rounded-full transition-all group-hover:scale-150 shadow-sm"
               style={{ backgroundColor: entry.color }}
             ></div>
-            <span className="text-sm font-medium text-primary opacity-80 group-hover:text-primary flex gap-1">
-              {entry.payload?.name || entry.value} <span className="text-primary opacity-60"></span>
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-bihar-red transition-colors">
+              {entry.payload?.name || entry.value}
             </span>
           </div>
         ))}
@@ -64,46 +61,47 @@ const TopCategories = () => {
   };
 
   return (
-    <div className="bg-primary rounded-2xl p-6 shadow-sm border border-white/20 dark:border-gray-700 hover:shadow-md transition-all duration-300">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
-        <h3 className="text-xl font-bold text-primary">Top Categories</h3>
-        <div className="w-full sm:w-auto">
-          <Select
-            value={selectedPeriod}
-            onChange={(e) => setSelectedPeriod(e.target.value)}
-            options={["This Week", "This Month", "This Year"]}
-            className="w-full sm:w-32"
-          />
+    <div className="premium-card p-8 group relative overflow-hidden">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-10">
+        <div>
+           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Category Split</p>
+           <h3 className="text-2xl font-black text-bihar-red dark:text-white font-display">Popular Flavors</h3>
         </div>
+        <Select
+          value={selectedPeriod}
+          onChange={(e) => setSelectedPeriod(e.target.value)}
+          options={["This Week", "This Month", "This Year"]}
+          className="w-full sm:w-40 bg-white/50 border-white/20"
+        />
       </div>
 
-      <div className="h-64">
+      <div className="h-72">
         {isLoading ? (
           <div className="h-full flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <Loader2 className="w-10 h-10 animate-spin text-bihar-red" />
           </div>
         ) : isError || chartData.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-primary opacity-60">
-            {isError ? "Failed to load data" : "No category data"}
+          <div className="h-full flex items-center justify-center border-2 border-dashed border-gray-100 rounded-[3rem] text-gray-400 font-bold uppercase tracking-widest">
+            {isError ? "Sync Failure" : "No Flavor Data"}
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={chartData}
                 cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={90}
-                paddingAngle={5}
+                cy="45%"
+                innerRadius={70}
+                outerRadius={100}
+                paddingAngle={8}
                 dataKey="value"
-                stroke={theme === 'dark' ? '#1f2937' : '#fff'}
+                stroke="none"
               >
                 {chartData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={entry.color}
-                    className="hover:opacity-80 transition-opacity cursor-pointer"
+                    className="hover:opacity-80 transition-opacity cursor-pointer transform hover:scale-105 duration-300"
                   />
                 ))}
               </Pie>

@@ -73,44 +73,58 @@ const Dashboard = () => {
       <div className=" mx-auto space-y-8">
 
         {/* ================= HEADER ================= */}
-        <div className="flex bg-primary flex-col md:flex-row justify-between items-start md:items-center bg-white dark:bg-gray-800 p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90">
-   <div className="flex items-center gap-4">
-  {/* Icon */}
-  <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/30">
-    <HiOutlineChartBar
-      className="text-red-600 dark:text-red-400"
-      size={22}
-    />
-  </div>
+        <header className="premium-card p-10 group overflow-hidden relative">
+          {/* Decorative Pattern Overlay */}
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-1000"
+            style={{ 
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30-30-30z' fill='%23d32f2f' fill-opacity='1'/%3E%3C/svg%3E")`,
+              backgroundSize: '40px'
+            }}
+          />
+          
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-8">
+              {/* Dynamic Icon Container */}
+              <div className="relative group/icon">
+                 <div className="absolute inset-0 bg-bihar-red blur-2xl opacity-20 group-hover/icon:opacity-40 transition-opacity duration-500 rounded-full" />
+                 <div className="relative w-24 h-24 rounded-[2rem] vibrant-gradient flex items-center justify-center shadow-bihari-lg transform group-hover/icon:rotate-[360deg] transition-transform duration-1000 ease-in-out">
+                    <HiOutlineChartBar className="text-heading" size={40} />
+                 </div>
+              </div>
 
-  {/* Text */}
-  <div className="flex flex-col gap-1">
-    <h1 className="text-heading font-bold tracking-tight text-red-500 dark:text-white">
-      Dashboard
-    </h1>
+              {/* Text Strategy */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                   <div className="h-0.5 w-12 bg-bihar-red/30 rounded-full" />
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-bihar-red/60 dark:text-gray-400">Station Overview</p>
+                </div>
+                <h1 className="text-5xl font-black text-heading font-display leading-none">
+                  Dashboard<span className="text-bihar-mustard">.</span>
+                </h1>
+                <p className="text-sm font-bold text-bihar-maroon/60 dark:text-gray-400 uppercase tracking-widest">
+                  Fulfillment Status & Logistics <span className="mx-3 opacity-20">|</span> Real-time Hub
+                </p>
+              </div>
+            </div>
 
-    <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">
-      Welcome back. Here’s an overview of today’s activity.
-    </p>
+            {/* Dynamic Filter / Actions */}
+            <div className="flex items-center gap-4 bg-gray-50 dark:bg-white/5 p-3 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-inner">
+               {['Orders', 'Sales', 'Guests'].map(tag => (
+                  <button key={tag} className="px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-bihar-red hover:bg-white dark:hover:bg-white/5 transition-all duration-300">
+                     {tag}
+                  </button>
+               ))}
+               <div className="w-px h-6 bg-gray-200 dark:bg-white/10 mx-2" />
+               <button className="vibrant-gradient px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white shadow-bihari-sm hover:scale-105 active:scale-95 transition-all">
+                  Generate Report
+               </button>
+            </div>
+          </div>
 
-    <div className="mt-1 h-[2px] w-16 rounded-full bg-red-500/70"></div>
-  </div>
-</div>
-
-          {/* <div className="mt-4 md:mt-0">
-            <Select
-              value={filterType}
-              onChange={(e) => setFilterType(e.target.value)}
-              options={[
-                { value: 'Week', label: 'Last Week' },
-                { value: 'Month', label: 'Last Month' },
-                { value: 'Year', label: 'Last Year' }
-              ]}
-              className="w-40"
-            />
-          </div> */}
-
-        </div>
+          {/* Abstract Glow Accents */}
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-bihar-red/5 rounded-full blur-[100px]" />
+          <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-bihar-mustard/5 rounded-full blur-[120px]" />
+        </header>
 
         {/* ================= STATS ================= */}
         <section>
