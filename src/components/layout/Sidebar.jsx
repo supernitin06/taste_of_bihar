@@ -192,6 +192,17 @@ const Sidebar = ({ theme = "dark" }) => {
         { id: "add-menu", label: "Add Menu", icon: UtensilsCrossed, path: "/menu-management/add" }
       ]
     },
+     {
+      id: "party",
+      label: "Party",
+      icon: PartyPopper,
+      hasDropdown: true,
+      subItems: [
+        { id: "birthday-party", label: "Birthday Party", path: "/party/birthday", icon: Cake },
+        { id: "kitty-party", label: "Kitty Party", path: "/party/kitty", icon: Users },
+        { id: "anniversary-party", label: "Anniversary Party", path: "/party/anniversary", icon: Heart },
+      ],
+    },
     {
       id: "payments",
       label: "Payments",
@@ -217,17 +228,7 @@ const Sidebar = ({ theme = "dark" }) => {
     },
     { id: "offers", label: "Offers", icon: FaCog, path: "/offers" },
     { id: "reviews", label: "Reviews", icon: MessageSquare, path: "/reviews" },
-    {
-      id: "party",
-      label: "Party",
-      icon: PartyPopper,
-      hasDropdown: true,
-      subItems: [
-        { id: "birthday-party", label: "Birthday Party", path: "/party/birthday", icon: Cake },
-        { id: "kitty-party", label: "Kitty Party", path: "/party/kitty", icon: Users },
-        { id: "anniversary-party", label: "Anniversary Party", path: "/party/anniversary", icon: Heart },
-      ],
-    },
+   
     { id: "settings", label: "Settings", icon: FaCog, path: "/settings" },
   ];
 

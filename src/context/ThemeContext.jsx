@@ -5,14 +5,8 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-    // Check system preference if no theme is saved
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
+    // Default to dark
+    return savedTheme || 'dark';
   });
 
   const [primaryColor, setPrimaryColor] = useState(() => {
@@ -74,7 +68,7 @@ export const ThemeProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [
       "dashboard", "users", "restaurants", "delivery-settings",
       "delivery-partners", "orders", "menu_items", "payments",
-      "sub-admin", "offers", "reviews", "settings"
+      "sub-admin", "offers", "reviews", "party", "settings"
     ];
   });
 
