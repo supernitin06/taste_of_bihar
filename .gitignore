@@ -41,3 +41,6 @@ _agent/
 brain/
 artifacts/
 tmp/
+
+# Vite
+vite.config.js.timestamp-*
